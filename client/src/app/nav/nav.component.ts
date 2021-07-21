@@ -63,13 +63,6 @@ export class NavComponent implements OnInit {
     this.clicked = true;
   }
 
-  setCurrentUser(){
-    if(this.user != null){
-      var user: User = JSON.parse(localStorage.getItem('user'));
-      this.accountService.setCurrentUser(user);
-    }
-  }
-
   logout(){
     this.accountService.logout()
     this.router.navigate(["/"])
@@ -78,7 +71,13 @@ export class NavComponent implements OnInit {
     this.toastr.success('Logout Successfull')
   }
 
-
+  setCurrentUser(){
+    if(this.user != null){
+      var user: User = JSON.parse(localStorage.getItem('user'));
+      this.accountService.setCurrentUser(user);
+    }
+  }
+  
   home(){
     var obj = JSON.parse(localStorage.getItem('user'));
     if(obj.username != null){
