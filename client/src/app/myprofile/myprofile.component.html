@@ -1,0 +1,105 @@
+<br>
+<br>
+<br>
+<h2> Edit profile </h2>
+<div class="container">
+  <div class="row gutters">
+  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="account-settings">
+        <div class="user-profile">
+          <div class="user-avatar">
+            <img src={{user.photoUrl}} style="height: 200px; width: 200px;">
+          </div>
+          <h5 class="user-name">Username: {{user.username}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mb-2 text-primary">Personal Details</h6>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            
+            <b><h6>Interests: </h6></b>
+            <input
+            [(ngModel)]="user.interests"
+            name="username"
+            class="form-control" 
+            type="text"> 
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            
+            <b><h6>Country: </h6></b>    
+            <input
+            [(ngModel)]="user.country"
+            name="country"
+            class="form-control"
+            type="text" style="height: 30px; width: 330px;"> 
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+          
+            <b><h6>KnownAs: </h6></b>    
+            <input
+            [(ngModel)]="user.knownAs"
+            name="know"
+            class="form-control"
+            type="text">     
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+          
+            <b><h6>Gender: </h6></b>    
+            <input
+            [(ngModel)]="user.gender"
+            name="gender"
+            class="form-control"
+            type="text">   
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+          
+            <b><h6>City: </h6></b>    
+            <input
+            [(ngModel)]="user.city"
+            name="gender"
+            class="form-control"
+            type="text">   
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+          
+            <b><h6>Introduction: </h6></b>    
+            <input
+            [(ngModel)]="user.introduction"
+            name="gender"
+            class="form-control"
+            type="text">   
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="text-right">
+            <button type="button" id="submit" name="submit" [routerLink]="['/']" 
+            routerLinkActive="router-link-active"  class="btn btn-secondary ">Cancel</button>
+            <button type="button" id="submit" name="submit" class="btn btn-primary">Update profile</button>
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>

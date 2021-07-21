@@ -1,0 +1,42 @@
+<div class="container mt-5">
+
+        <ng-container
+            *ngIf="(accountService.currentUser$ | async) as user; then loggedIn; else loggedOut">
+        </ng-container>
+
+        <ng-template #loggedIn>
+            
+            <h1 class="text-center"> Welcome to Photography App!</h1>
+            <div>
+               <carousel [images]="images" 
+                [cellsToShow]="images[images]" 
+                [freeScroll]=""
+                [width]="1000"
+                [height]="400"
+                > </carousel>
+            </div>
+        </ng-template>
+    
+        <ng-template #loggedOut>
+            
+            <div>
+                <h1 class="text-center">Welcome to Photography App!</h1>
+               <div class="carrusel">
+                    <carousel [images]="images" 
+                    [cellsToShow]="images[images]" 
+                    [freeScroll]=""
+                    [width]="1000"
+                    [height]="400"
+                    > </carousel>
+                </div>
+                    <div class="text-center">
+
+                        <h3>If you are not register, enjoy us!</h3>
+                        <button (click)="registerToggle()" routerLink="/register" class="btn btn-warning btn-lg"> Register here </button>
+                        <button class="btn btn-info btn-lg" routerLink="/learn"> Learn More </button>
+
+                    </div>
+            </div>
+        </ng-template>
+
+</div>

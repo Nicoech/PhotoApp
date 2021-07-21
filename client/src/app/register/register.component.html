@@ -1,0 +1,47 @@
+<form style="display:flexbox;bottom: 30%;" #registerForm="ngForm" autocomplete="off"> 
+
+    <div id="registerBox">
+        <div class="card">
+            <div>
+                <img src="assets/signup/camera.png" alt="">
+            </div>
+        <div id="titleSignUp">
+            <h2 class="text-center">SignUp</h2>
+            <hr>
+        </div>
+        
+            <div id="a" class="form-group first">
+                <b> Select a image profile:</b>
+                <div *ngIf="filePath && filePath !== ''">
+                    <img style="height: 150px;width: 150px;" [src]="filePath" alt="myForm.value.name">
+                </div>
+                <div>
+                    <input #imageInput type="file" accept="image/*" (change)="imagePreview($event)">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control text-center" name="username" 
+                [(ngModel)]="model.username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control text-center" name="password" 
+                [(ngModel)]="model.password" placeholder="Password">
+            </div>
+            <button class="btn btn-success mr-2 mb-2" style="background-color:black; color: white;" type="submit" (click)="register()">Register</button>
+            <button class="btn btn mr-2" style="background-color: #5466; color: white;" type="button" routerLink="/"> Cancel </button>
+        </div>
+                
+
+        <div class="form-group text-center">
+            <ng-container *ngIf="validationErrors.length > 0"></ng-container>
+            <br>
+            <br>
+                <ol class="text-danger">
+
+                    <div id="ErrorRegister" *ngFor="let error of validationErrors">
+                            {{error}}
+                    </div>
+                </ol>
+        </div>
+    </div>
+</form>

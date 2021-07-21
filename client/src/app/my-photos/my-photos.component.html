@@ -1,0 +1,12 @@
+
+<div class="container">
+    <h1>My photos:</h1>
+    <div class="flex-container" *ngIf="member">
+        <div class="imgs" *ngFor="let img of images">
+               
+                <img [src]="img" alt="Image">
+        </div>            
+    </div>
+</div>
+
+    

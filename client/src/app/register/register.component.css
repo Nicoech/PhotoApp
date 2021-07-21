@@ -1,0 +1,30 @@
+form{
+    margin-top: 15%;
+}
+
+#a{
+    margin-left: 50px;
+}
+img{
+    display: flex;
+    margin-left: 175px;
+}
+
+#ErrorRegister{
+    border-radius: 6px;
+    background-color: gray;
+    color: white;
+}
+
+.card{
+    width: 500px;
+    height: 500px;
+}
+
+#titleSignUp{
+    width: 500px;
+    height: 500px;
+}
+#imgProfile{
+    margin: 30 30 30 30;
+}

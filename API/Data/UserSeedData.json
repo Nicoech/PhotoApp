@@ -1,0 +1,20 @@
+[
+    {
+      "UserName": "TestUser",
+      "Gender": "male",
+      "KnownAs": "User",
+      "Created": "2019-11-22",
+      "LastActive": "2020-06-25",
+      "Introduction": "test",
+      "LookingFor": "test",
+      "Interests": "test",
+      "City": "Gouglersville",
+      "Country": "Mongolia",
+      "Photos": [
+        {
+          "Url": "../api/wwwroot/Elephant and more.jpg",
+          "isMain": true
+        }
+      ]
+    }
+  ]

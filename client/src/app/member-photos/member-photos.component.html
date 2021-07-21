@@ -1,0 +1,36 @@
+
+  
+<div class="container">
+    <div class="row" *ngIf="member">
+        <div class="col-4">
+            <div class="card">
+                <img src="{{member.photoUrl}}" alt="{{member.knownAs}}" 
+                class="card-img-top img-thumbnail">
+                <div class="card-body">
+                    <div>
+                        <p><b>Location:</b> {{member.country}}</p>
+                        <p><b>City:</b> {{member.city}}</p>
+                        <p><b>Introduction:</b> {{member.introduction}} </p>
+                        <p><b>Last Active:</b> {{member.lastActive}}</p>
+                        <p><b>Member Since:</b> {{member.created}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="card">
+                <tabset>
+                    <tab heading="Interests">
+                       <h4>Interests</h4>
+                       <p>{{member.interests}}</p>
+                    </tab>
+                    <tab heading="Photos">
+                        <app-my-photos></app-my-photos>
+                     </tab>
+                     <tab heading="Albums">
+                        
+                     </tab>
+                </tabset>
+    
+            </div>
+    </div>
+</div>
