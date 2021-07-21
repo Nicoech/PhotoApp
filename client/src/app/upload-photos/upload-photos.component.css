@@ -15,7 +15,6 @@ button{
     background-color: black;
     color: white;
 }
-
 button:hover{
     background-color: white;
     transition: 2s;

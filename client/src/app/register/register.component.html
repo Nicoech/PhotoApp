@@ -2,16 +2,16 @@
 
     <div id="registerBox">
         <div class="card">
-            <div>
+            <div id="logo">
                 <img src="assets/signup/camera.png" alt="">
             </div>
-        <div id="titleSignUp">
-            <h2 class="text-center">SignUp</h2>
-            <hr>
-        </div>
+            <div id="titleSignUp">
+                <h2 class="text-center">SignUp</h2>
+                <hr>
+            </div>
         
             <div id="a" class="form-group first">
-                <b> Select a image profile:</b>
+                <b> Select a profile image:</b>
                 <div *ngIf="filePath && filePath !== ''">
                     <img style="height: 150px;width: 150px;" [src]="filePath" alt="myForm.value.name">
                 </div>

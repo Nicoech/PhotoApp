@@ -66,3 +66,6 @@ node_modules/
 .env
 API/bin/Debug/net5.0/API.dll
 API/bin/Debug/net5.0/API.pdb
+API/obj/Debug/net5.0/API.assets.cache
+API/obj/Debug/net5.0/API.csproj.AssemblyReference.cache
+API/bin/Debug/net5.0/API.dll
