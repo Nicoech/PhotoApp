@@ -1,8 +1,10 @@
 
 <div class="container">
-    <h1>My photos:</h1>
+    <div class="card">
+        <h4>My photos:</h4>
+    </div>
     <div class="flex-container" *ngIf="member">
-        <div class="imgs" *ngFor="let img of images">
+        <div id="gallery" *ngFor="let img of images">
                
                 <img [src]="img" alt="Image">
         </div>            

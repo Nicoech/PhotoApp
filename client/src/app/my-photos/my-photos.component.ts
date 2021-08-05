@@ -38,7 +38,7 @@ export class MyPhotosComponent implements OnInit {
 
     this.displayconfig = {
       imageminwidth: '250px',
-      containerwidth: '80%',
+      containerwidth: '500px',
       containerheight: '500px',
       fullScreenView: true // Set to false to hide the top right full screen option
     };

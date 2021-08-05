@@ -43,7 +43,9 @@ export class NavComponent implements OnInit {
 
   user: any = {};
 
-  constructor(public accountService: AccountService, public route: ActivatedRoute ,private router: Router, private toastr: ToastrService ) { }
+  constructor(public accountService: AccountService, 
+            public route: ActivatedRoute ,private router: Router, 
+            private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.setCurrentUser();
@@ -51,7 +53,11 @@ export class NavComponent implements OnInit {
 
   login(){
     this.accountService.login(this.model).subscribe(response => {
+
+      this.toastr.show("Login succesfull!");
+
       return response;
+
     }, error => {
       this.toastr.error(error.error);
     });
