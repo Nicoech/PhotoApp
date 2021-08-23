@@ -25,6 +25,10 @@ export class MembersService {
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
+  getPhotoProfile(id: number){
+    return this.http.get<Photo>(this.baseUrl + 'users/getPhotoProfile/' + id);
+  }
+
   getPhotos(id: number){
     return this.http.get<Photo>(this.baseUrl + 'users/getphotos/' + id);
   }

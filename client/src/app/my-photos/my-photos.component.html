@@ -1,9 +1,5 @@
 
 <div class="container">
-    <div class="card">
-        <h4>My photos:</h4>
-    </div>
-
         <ngb-carousel *ngIf="member">
  
             <ng-template ngbSlide id="gallery" *ngFor="let img of images; let i = index" id="{{i}}" >

@@ -89,6 +89,7 @@ namespace API.Data
             if (user == null)
             {
                 return null;
+                
             } else{
 
                 await UploadImage(user);
@@ -100,65 +101,83 @@ namespace API.Data
         public async Task<bool> UploadImage(AppUser user)
         {   
            
-            foreach (var file in _httpContextAccessor.HttpContext.Request.Form.Files)
-            {
+                foreach (var file in _httpContextAccessor.HttpContext.Request.Form.Files)
+                {
                
-                    Image img = new Image();
-                    img.ImageTitle = file.FileName;
+                        Image img = new Image();
+                        img.ImageTitle = file.FileName;
 
-                    MemoryStream ms = new MemoryStream();
-                    await file.CopyToAsync(ms);
-                    img.ImageData = ms.ToArray();
+                        MemoryStream ms = new MemoryStream();
+                        await file.CopyToAsync(ms);
+                        img.ImageData = ms.ToArray();
 
-                    string base64String = Convert.ToBase64String(img.ImageData);
+                        string base64String = Convert.ToBase64String(img.ImageData);
 
-                    ms.Close();
-                    ms.Dispose();
+                        ms.Close();
+                        ms.Dispose();
 
-                    Photo photo = new Photo
-                    {
-                        AppUserId = user.Id,
-                        ImageData = img.ImageData,
-                        Url = file.FileName,
-                        ImageType = file.ContentType,
-                        isMain = false,
-                    };
+                   
+                         Photo photo = new Photo
+                        {
+                            AppUserId = user.Id,
+                            ImageData = img.ImageData,
+                            Url = file.FileName,
+                            ImageType = file.ContentType,
+                            isMain = false,
+                        };
 
-                    if (photo.ImageData.Length > 0 && photo.isMain == false)
-                    {
-                        await _context.AddAsync(photo);
-                        await _context.SaveChangesAsync();
-                       
-                       return flag = true;
-                       
-                    } else {
-                       return flag = false;
-                    }
+                         if (photo.ImageData.Length > 0)
+                        {
+                            await _context.AddAsync(photo);
+                            await _context.SaveChangesAsync();
+                        
+                            return flag = true;
+                        
+                        } else {
+                            return flag = false;
+                        }               
             }
             return flag;
         }
 
        
-        public ActionResult<List<byte[]>> GetImages(int id)
+            public ActionResult<List<byte[]>> GetImages(int id)
             {
+                    
+                    List<byte[]> imageBytes = new List<byte[]>();
+        
+                    var pp =_context.Phote
+                                .Where(p => p.AppUserId == id)
+                                .ProjectTo<PhotoDto>(_mapper.ConfigurationProvider).ToListAsync();
+                        
+
+                    foreach (var file in pp.Result){
+                        
+                            if(file.IsMain == false){
+                                imageBytes.Add(file.ImageData);
+                            }
+                    }
+
+                    return imageBytes;
+            }   
+         public ActionResult<byte[]> getImageProfile(int id)
+         {
                 
-                List<byte[]> imageBytes = new List<byte[]>();
+                byte[] imageBytes = new byte[10];
        
                  var pp =_context.Phote
-                              .Where(p => p.AppUserId == id)
-                              .ProjectTo<PhotoDto>(_mapper.ConfigurationProvider).ToListAsync();
-                    
+                              .Where(p => p.AppUserId == id && p.isMain == true).ProjectTo<PhotoDto>(_mapper.ConfigurationProvider);
 
-                 foreach (var file in pp.Result){
+                 foreach (var file in pp){
                      
-                        if(file.IsMain == false){
-                            imageBytes.Add(file.ImageData);
-                        }
+                    if(file.IsMain == false){
+                        imageBytes = file.ImageData;
+                    }
                  }
 
+
                 return imageBytes;
-       
-            }   
+         } 
     }
     
 }

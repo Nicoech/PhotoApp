@@ -16,7 +16,7 @@
                     <img style="height: 150px;width: 150px;" [src]="filePath" alt="myForm.value.name">
                 </div>
                 <div>
-                    <input #imageInput type="file" accept="image/*" (change)="imagePreview($event)">
+                    <input #imageInput type="file" accept="image/*" (change)="onFileSelected($event)">
                 </div>
             </div>
             <div class="form-group">

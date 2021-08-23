@@ -57,9 +57,7 @@ export class MyPhotosComponent implements OnInit {
 
   loadPhoto(){
 
-    this.memberService.getPhotos(this.member.id).subscribe(photo =>{
-        
-      this.photo = photo;   
+    this.memberService.getPhotos(this.member.id).subscribe(() =>{ 
 
       for (let i = 0; i < this.member.photos.length ; i++) {
 
@@ -74,6 +72,8 @@ export class MyPhotosComponent implements OnInit {
 
     });
   } 
+
+  
   eliminar(idPhoto: number){
     alert("desea eliminar la foto: " + idPhoto);
   }

@@ -27,7 +27,7 @@ export class UploadPhotosComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
+
   }
 
   onFileSelected(event){
@@ -44,7 +44,6 @@ export class UploadPhotosComponent implements OnInit {
 
         this.member = member;
       
-
         const formData = new FormData();
         formData.append("formFile",this.selectedfile);
         formData.append("fileName",this.selectedfile);
@@ -53,7 +52,9 @@ export class UploadPhotosComponent implements OnInit {
             
             //en caso de que devuelta falso muestro mensaje sino guardo
             if(this.checkHasFile(formData) == false){
+
               this.toastr.warning('Upload a photo , the field is empty');
+            
             } else {
 
               photo = this.photo;

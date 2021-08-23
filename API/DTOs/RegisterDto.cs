@@ -4,6 +4,7 @@ namespace API.DTOs
 {
     public class RegisterDto
     {
+
         [Required]
         [MinLength(4)]
         public string Username { get; set; }

@@ -60,6 +60,12 @@ namespace API.Controllers
             
             return _userRepository.GetImages(id);
         }
+
+        [HttpGet("getPhotoProfile/{id}")]
+        public ActionResult<byte[]> getImage(int id){
+            
+            return _userRepository.getImageProfile(id);
+        }
      
     }
 }

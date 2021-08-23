@@ -34,6 +34,7 @@ const routes: Routes = [
   {path: 'learn', component: LearnComponent},
   {path: 'register',component: RegisterComponent},
   {path: '**', component: HomeComponent, pathMatch: 'full' }
+  
 
 ];
 

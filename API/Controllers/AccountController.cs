@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -6,8 +9,10 @@ using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static MediaTypeNames.MediaTypes;
 
 namespace API.Controllers
 {
@@ -16,8 +21,12 @@ namespace API.Controllers
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
         private readonly IUserRepository _userRepository;
-        public AccountController(DataContext context, ITokenService tokenService, IUserRepository userRepository)
+        private readonly IHttpContextAccessor _httpContextAccesor;
+
+        bool flag;
+        public AccountController(DataContext context, ITokenService tokenService, IUserRepository userRepository,IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccesor = httpContextAccessor;
             _userRepository = userRepository;
             _tokenService = tokenService;
             _context = context;
@@ -37,14 +46,16 @@ namespace API.Controllers
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
             using var hmac = new HMACSHA512();
-
             var user = new AppUser
             {
                 UserName = registerDto.Username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
+
+
             _context.Users.Add(user);
+
             await _context.SaveChangesAsync();
 
             return new UserDto
@@ -54,6 +65,7 @@ namespace API.Controllers
                 Token = _tokenService.CreateToken(user)
             };
         }
+
 
         [HttpPost("login")]
 
