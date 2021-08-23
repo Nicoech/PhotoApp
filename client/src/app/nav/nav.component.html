@@ -4,7 +4,7 @@
         <ng-container *ngIf="accountService.currentUser$ | async as user" >
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <input [(ngModel)]="usernameSearch" type="search" placeholder="Search photos" class="form-control"/>
-            <button routerLink="/photos/{{usernameSearch}}" class="btn btn-warning">
+            <button (click)="photosByUser(usernameSearch)" class="btn btn-warning">
               <fa-icon [icon]="faSearch"></fa-icon>
             </button>
             <li class="nav-item">

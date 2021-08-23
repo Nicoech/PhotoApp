@@ -24,6 +24,8 @@ import { IgxGridModule } from 'igniteui-angular';
 import { UploadPhotosComponent } from './upload-photos/upload-photos.component';
 import { NgxImageDisplayModule } from '@creativeacer/ngx-image-display';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     IvyCarouselModule,
     IgxGridModule,
+    NgbModule,
     NgxImageDisplayModule.forRoot(),
     SharedModule,
     ReactiveFormsModule

@@ -55,8 +55,8 @@ export class UploadPhotosComponent implements OnInit {
             if(this.checkHasFile(formData) == false){
               this.toastr.warning('Upload a photo , the field is empty');
             } else {
+
               photo = this.photo;
-              //console.log(photo);
               this.toastr.success('Photo upload succesfull!');
              
             }

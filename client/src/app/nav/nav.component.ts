@@ -96,6 +96,12 @@ export class NavComponent implements OnInit {
           var obj = JSON.parse(localStorage.getItem('user'));
           this.router.navigateByUrl('my_photos/' + obj.username);
   }
+
+  photosByUser(username: string)
+  { 
+          this.router.navigateByUrl('photos/' + username.toLowerCase());
+  }
+
   uploadPhotos()
   { 
           var obj = JSON.parse(localStorage.getItem('user'));

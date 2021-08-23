@@ -14,12 +14,13 @@ h4{
 
 #gallery img {
     
-    width: 100% !important;
+    width: auto !important;
     height: auto !important;
     margin-bottom:5px; /* to match column gap */
- }
+    border-radius: 2%;
+}
 
-.gallery-wrapper {
+ .gallery-wrapper {
     text-align: center;
     margin-top: 50px;
 }

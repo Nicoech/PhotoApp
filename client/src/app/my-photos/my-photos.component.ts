@@ -1,34 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DisplayConfig } from '@creativeacer/ngx-image-display';
 import { Member } from '../_models/member';
 import { Photo } from '../_models/photo';
 import { MembersService } from '../_services/members.service';
-import { ImageData, DisplayConfig, SameSizeConfig, ImageEffect, BaseImage } from '@creativeacer/ngx-image-display';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
-import { thisMonth } from '@igniteui/material-icons-extended';
-import { ThrowStmt } from '@angular/compiler';
-
+import { faDrumSteelpan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-my-photos',
   templateUrl: './my-photos.component.html',
   styleUrls: ['./my-photos.component.css']
 })
+
 export class MyPhotosComponent implements OnInit {
 
   usernameSearch: string;
   validationErrors: string[] = [];
-  
+  faSearch = faDrumSteelpan;
+
   member: Member;
   photo: Photo;
 
   displayconfig: DisplayConfig;
   
   images: any = [];
-  
 
   constructor(public _DomSanitizationService: DomSanitizer,private http: HttpClient,private memberService: MembersService, private router: ActivatedRoute, private route: Router) {}
 
@@ -77,4 +74,7 @@ export class MyPhotosComponent implements OnInit {
 
     });
   } 
+  eliminar(idPhoto: number){
+    alert("desea eliminar la foto: " + idPhoto);
+  }
 }
