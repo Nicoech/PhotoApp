@@ -81,6 +81,8 @@ export class UploadPhotosComponent implements OnInit {
       reader.readAsDataURL(this.selectedfile);
   }
 
+  
+
   //Chequeo que se haya cargado una foto 
   checkHasFile(file) {
 
