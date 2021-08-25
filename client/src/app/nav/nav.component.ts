@@ -100,6 +100,11 @@ export class NavComponent implements OnInit {
           this.router.navigateByUrl('my_photos/' + obj.username);
   }
 
+  myAlbums()
+  { 
+          this.router.navigateByUrl('/');
+  }
+
   photosByUser(username: string)
   { 
         if(username == "" || username == undefined){
