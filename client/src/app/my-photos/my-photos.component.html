@@ -1,16 +1,26 @@
 
 <div class="container">
         <ngb-carousel *ngIf="member">
- 
+
             <ng-template ngbSlide id="gallery" *ngFor="let img of images; let i = index" id="{{i}}" >
 
                      <img [src]="img" alt="Images" style="width: 100%; height: 100%">
+                     <div class="carousel-caption">
+                        <ng-container *ngIf="checkUserToShowDeleteButton() === true"> 
+                            <button (click)="eliminar(member.photos[i].id)">
+                                <fa-icon [icon]="faSearch" style="position: inherit;"></fa-icon>
+                            </button>
+                        </ng-container>
+                    </div>
+                    <div class="card-title">
+                        <h6>{{member.photos[i].url}}</h6>
+                    </div>
             </ng-template>
+            
 
         </ngb-carousel>
-        <button class="btn btn-primary" (click)="eliminar(images.id)">
-            Delete photo
-            <fa-icon [icon]="faSearch" style="position: inherit;"></fa-icon>
-        </button>
+
+
+
     
 </div>

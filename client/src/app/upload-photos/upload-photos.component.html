@@ -6,7 +6,7 @@
 
 <div class="card">
   <h1>Upload new photos!</h1>
-  <input #imageInput type="file" accept="image/*" (change)="onFileSelected($event)">
+  <input type="file" accept="image/*" (change)="onFileSelected($event)">
   <button class="btn" (click)="onUpload()">
      Upload!
   </button>

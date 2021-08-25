@@ -6,6 +6,7 @@ import { ErrorInterceptor } from '../_interceptors/error.interceptor';
 import { AccountService } from '../_services/account.service';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
+import { file } from 'jszip';
 
 @Component({
   selector: 'app-register',
@@ -30,28 +31,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(public accountService: AccountService, public router: Router
     , public toast: ToastrService, public formBuilder: FormBuilder,private http: HttpClient) {
-
-        this.myForm = this.formBuilder.group({
-          img: [null],
-          filename: ['']
-        })
   }
 
   ngOnInit(): void {
   }
 
-    onFileSelected(event){
-    
-      this.selectedfile = event.target.files[0];
-      
-      console.log(this.selectedfile);      
-    }
-
-
   register(){
     
     const formData = new FormData();
-    formData.append("formFile",this.selectedfile);
+    formData.append("formFile", this.selectedfile);
     formData.append("fileName",this.selectedfile);
   
 
@@ -66,7 +54,6 @@ export class RegisterComponent implements OnInit {
           this.http.post(this.baseUrl + 'users/upload/'+ this.model.username, formData).subscribe(photo => {
               
               photo = this.photo;
-
               this.router.navigate(['/']);
               this.toast.success('Welcome to photoApp!');
               this.cancel();
@@ -76,9 +63,9 @@ export class RegisterComponent implements OnInit {
 
         }, error =>{
 
-                for(let i = 0; i < error.length;i++){
+            for(let i = 0; i < error.length;i++){
 
-              this.toast.error('Error(' + i + ')', error[i]);
+                this.toast.error('Error(' + i + ')', error[i]);
             } 
 
         });
@@ -86,25 +73,21 @@ export class RegisterComponent implements OnInit {
 
    
   }
- 
+  
+    onFileSelected(event){
+      
+      this.selectedfile = event.target.files[0];
+      
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.filePath = reader.result as string;
+      }
+      reader.readAsDataURL(this.selectedfile);
+      
+    }
+
   cancel(){
     this.cancelRegister.emit(false);
-  }
-
-  imagePreview(e) {
-    const file = (e.target as HTMLInputElement).files[0];
-
-    this.myForm.patchValue({
-      img: file
-    });
-
-    this.myForm.get('img').updateValueAndValidity()
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.filePath = reader.result as string;
-    }
-    reader.readAsDataURL(file)
   }
 
   checkHasFile(file) {

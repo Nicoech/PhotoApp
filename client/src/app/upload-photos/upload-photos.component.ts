@@ -25,46 +25,60 @@ export class UploadPhotosComponent implements OnInit {
 
   photo: object = {}
 
+  filePath: string;
 
   ngOnInit(): void {
 
   }
 
-  onFileSelected(event){
-   
-      this.selectedfile = event.target.files[0];
-      
-      console.log(this.selectedfile);      
-  }
 
 
   onUpload(){
 
     this.accountService.getMember(this.router.snapshot.paramMap.get('username')).subscribe(member => {
 
+
+
         this.member = member;
-      
-        const formData = new FormData();
-        formData.append("formFile",this.selectedfile);
-        formData.append("fileName",this.selectedfile);
 
-        this.http.post(this.baseUrl + 'users/upload/'+ member.username, formData).subscribe(photo => {
+        if(member){
+
+          const formData = new FormData();
+          formData.append("formFile",this.selectedfile);
+          formData.append("fileName",this.selectedfile);
+  
+          this.http.post(this.baseUrl + 'users/upload/'+ member.username, formData).subscribe(photo => {
+              
+              //en caso de que devuelta falso muestro mensaje sino guardo
+              if(this.checkHasFile(formData) == false){
+  
+                this.toastr.warning('Upload a photo , the field is empty');
+              
+              } else {
+  
+                photo = this.photo;
+                this.toastr.success('Photo upload succesfull!');
+               
+              }
+        
             
-            //en caso de que devuelta falso muestro mensaje sino guardo
-            if(this.checkHasFile(formData) == false){
-
-              this.toastr.warning('Upload a photo , the field is empty');
-            
-            } else {
-
-              photo = this.photo;
-              this.toastr.success('Photo upload succesfull!');
-             
-            }
-      
-          
-        });
+          });
+        } else{
+          this.route.navigate(['/not-found']);
+        }
+        
     });
+  }
+
+  onFileSelected(event){
+    
+    this.selectedfile = event.target.files[0]; 
+    
+    const reader = new FileReader();
+      reader.onload = () => {
+        this.filePath = reader.result as string;
+      }
+      reader.readAsDataURL(this.selectedfile);
   }
 
   //Chequeo que se haya cargado una foto 

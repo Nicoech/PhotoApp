@@ -79,21 +79,22 @@ namespace API.Data
         }
         
         
-        public async Task<MemberDto> UploadPhoto(string member)
+        public async Task<bool> UploadPhoto(string member)
         {
             
             AppUser user = new AppUser();
-
-            user = _context.Users.SingleOrDefault(x => x.UserName == member);
+            
+            
+            user = _context.Users.SingleOrDefault(x => x.UserName.ToLower() == member.ToLower());
 
             if (user == null)
             {
-                return null;
+                return false;
                 
             } else{
 
                 await UploadImage(user);
-                return await _context.Users.Where(x => x.UserName == member).ProjectTo<MemberDto>(_mapper.ConfigurationProvider).FirstAsync();
+                return true;
             }
             
         }

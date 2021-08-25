@@ -24,7 +24,7 @@ namespace API.Interfaces
 
         Task<MemberDto> GetMemberAsync(string username);
 
-        Task<MemberDto> UploadPhoto(string member);
+        Task<bool> UploadPhoto(string member);
 
         ActionResult<List<byte[]>> GetImages(int id);
         

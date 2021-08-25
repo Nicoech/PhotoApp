@@ -2,5 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-        background-image: url("https://thumbs.gfycat.com/OffbeatKindAmphibian-size_restricted.gif")
-        ;background-size: 100%;}
+        background: linear-gradient(black, rgb(150, 132, 132),white);
+        ;background-repeat: no-repeat}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

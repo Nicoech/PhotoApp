@@ -22,8 +22,6 @@ namespace API.Controllers
         private readonly ITokenService _tokenService;
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _httpContextAccesor;
-
-        bool flag;
         public AccountController(DataContext context, ITokenService tokenService, IUserRepository userRepository,IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccesor = httpContextAccessor;

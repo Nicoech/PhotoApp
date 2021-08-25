@@ -25,6 +25,14 @@ import { UploadPhotosComponent } from './upload-photos/upload-photos.component';
 import { NgxImageDisplayModule } from '@creativeacer/ngx-image-display';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -54,7 +62,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     NgxImageDisplayModule.forRoot(),
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+     LoadingBarHttpClientModule,
+     LoadingBarRouterModule,
+     LoadingBarModule,
+     MatToolbarModule,
+     MatSidenavModule,
+     MatButtonModule,
+     MatIconModule,
+     MatDividerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

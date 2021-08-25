@@ -1,6 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faChild } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +16,7 @@ import { AccountService } from '../_services/account.service';
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
+  encapsulation: ViewEncapsulation.Emulated,
   providers: [
     {
       provide: BsDropdownConfig,
@@ -50,6 +51,8 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     this.setCurrentUser();
   }
+
+
 
   login(){
     this.accountService.login(this.model).subscribe(response => {
@@ -99,7 +102,15 @@ export class NavComponent implements OnInit {
 
   photosByUser(username: string)
   { 
-          this.router.navigateByUrl('photos/' + username.toLowerCase());
+        if(username == "" || username == undefined){
+
+            this.toastr.error('Type a username to search!');
+            
+        } else{
+
+            this.router.navigateByUrl('photos/' + username.toLowerCase());
+        }
+          
   }
 
   uploadPhotos()

@@ -50,7 +50,7 @@ namespace API.Controllers
         }
 
         [HttpPost("upload/{username}")]
-        public async Task<MemberDto> UploadPhoto(string username)
+        public async Task<bool> UploadPhoto(string username)
         {
             return await _userRepository.UploadPhoto(username);
         }

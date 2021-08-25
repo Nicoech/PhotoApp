@@ -48,6 +48,7 @@ export class MemberPhotosComponent implements OnInit {
       } else {
         this.member = member;
         this.loadPhoto();
+        this.loadProfilePhoto();
       }
     })
   }
@@ -68,6 +69,22 @@ export class MemberPhotosComponent implements OnInit {
    
       }
       return this.images;
+
+    });
+  } 
+
+  loadProfilePhoto(){
+
+    this.memberService.getPhotoProfile(this.member.id).subscribe(photo =>{
+        
+      this.photo = photo;   
+      for (let i = 0; i < this.member.photos.length ; i++) {
+      
+        this.images = 'data:'+ this.member.photos[i].imageType+';base64,'+ this.member.photos[i].imageData;
+      
+        return this.images;
+      }
+
 
     });
   } 
